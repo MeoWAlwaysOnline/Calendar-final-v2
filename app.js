@@ -165,6 +165,7 @@
   function refreshRatesFromApi(display){
     if(ratesLoading) return;
     if(typeof fetch!=='function'){ showToast('Автообновление курсов недоступно в этом браузере'); return; }
+    if(typeof navigator!=='undefined' && navigator.onLine===false){ showToast('Нет интернета — курсы валют можно обновить только онлайн'); return; }
     ratesLoading = true;
     showToast('Обновляем курсы…');
     fetch('https://open.er-api.com/v6/latest/'+encodeURIComponent(display))
